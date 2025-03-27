@@ -39,4 +39,4 @@ Pour utiliser ce projet sur votre propre machine, suivez les étapes suivantes :
 
 1. Clonez le repository sur votre machine locale.
    ```bash
-   git clone https://github.com/username/repository.git
+   git clone https://github.com/arthur-brillaud/CV-web.git
