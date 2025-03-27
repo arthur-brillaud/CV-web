@@ -24,7 +24,7 @@ Ce projet inclut un **CV interactif** avec un système de **sécurisation d'acc�
    - Interface soignée avec une **palette de couleurs** cohérente, comprenant un **fond de couleur noire avec un effet vidéo** et des boutons de couleur bleue et blanche.
    - Boutons colorés pour des interactions faciles et intuitives.
 
-   ![Calculette](./assets/Calculatrice.png)
+   ![Calculette](./assets/Calculette.png)
 
 ## Technologies Utilisées
 
