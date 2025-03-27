@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accès sécurisé</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background-color: #0f172a;
+        color: white;
+      }
+      .fade {
+        animation: fadeIn 0.6s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .font-bungee {
+        font-family: 'Bungee Tint', cursive;
+      }
+
+      .blue-text {
+        color: #3B82F6;
+      }
+
+      /* Glass style */
+      .glass {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transform-style: preserve-3d;
+        will-change: transform;
+        transition: transform 0.1s ease-out;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Tint&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap" rel="stylesheet">
+  </head>
+  <body class="flex items-center justify-center min-h-screen p-4 relative overflow-hidden">
+    <video autoplay loop muted playsinline class="fixed top-0 left-0 w-full h-full object-cover z-[-1]">
+      <source src="assets/Background.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la vidéo.
+    </video>
+    <div class="glass p-6 rounded-xl shadow-xl max-w-xl w-full text-center space-y-6">
+      <h1 class="text-2xl font-bold">🔐 Accès sécurisé</h1>
+      <form id="questionForm" class="space-y-4">
+        <div>
+          <p class="font-semibold mb-2 text-lg">Combien font <span id="calc-question" class="font-croobie select-none text-lg blue-text"></span> ?</p>
+          <input type="text" name="calc" class="w-full p-2 rounded text-black" placeholder="Votre réponse..." />
+        </div>
+        <div>
+          <p class="font-semibold mb-2">Retapez ce code exactement : <strong id="captcha-text" class="font-croobie select-none text-lg blue-text"></strong></p>
+          <input type="text" name="captcha" class="w-full p-2 rounded text-black" placeholder="Reproduisez le code..." />
+        </div>
+      </form>
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+        <button id="submitBtn" onclick="checkAnswers()" class="bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition" disabled>Valider</button>
+        <button id="regenBtn" onclick="regenerateCaptcha()" class="bg-[#3B82F6] text-white px-4 py-2 rounded hover:bg-[#2563EB] transition">🔁</button>
+      </div>
+      <p id="message" class="text-red-400 font-semibold mt-2"></p>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const calcInput = document.querySelector("input[name='calc']");
+        const captchaInput = document.querySelector("input[name='captcha']");
+        const submitBtn = document.getElementById('submitBtn');
+
+        function toggleButton() {
+          const calcValue = calcInput.value.trim();
+          const captchaValue = captchaInput.value.trim();
+          if (calcValue && captchaValue) {
+            submitBtn.disabled = false;
+          } else {
+            submitBtn.disabled = true;
+          }
+        }
+
+        calcInput.addEventListener("input", toggleButton);
+        captchaInput.addEventListener("input", toggleButton);
+      });
+
+      function generateCaptcha() {
+        const chars = 'abcdefghijklmnopqrstuvwxyz';
+        const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const digits = '0123456789';
+
+        const getRandom = (str) => str[Math.floor(Math.random() * str.length)];
+
+        let result = [getRandom(chars), getRandom(CHARS), getRandom(digits)];
+        const all = chars + CHARS + digits;
+
+        const length = Math.floor(Math.random() * 6) + 5;
+        while (result.length < length) {
+          result.push(getRandom(all));
+        }
+
+        return result.sort(() => Math.random() - 0.5).join('');
+      }
+
+      let a = Math.floor(Math.random() * 10);
+      let b = Math.floor(Math.random() * 10);
+      let correctCalc = a + b;
+      let captchaCode = generateCaptcha();
+
+      document.getElementById('calc-question').textContent = `${a} + ${b}`;
+      document.getElementById('captcha-text').innerText = captchaCode;
+
+      let tentatives = 5;
+
+      function regenerateCaptcha() {
+        const newA = Math.floor(Math.random() * 10);
+        const newB = Math.floor(Math.random() * 10);
+        correctCalc = newA + newB;
+        const calcEl = document.getElementById('calc-question');
+        calcEl.textContent = `${newA} + ${newB}`;
+        calcEl.classList.add('fade');
+        setTimeout(() => calcEl.classList.remove('fade'), 600);
+
+        captchaCode = generateCaptcha();
+        const captchaEl = document.getElementById('captcha-text');
+        captchaEl.innerText = captchaCode;
+        captchaEl.classList.add('fade');
+        setTimeout(() => captchaEl.classList.remove('fade'), 600);
+
+        document.querySelector("input[name='calc']").value = '';
+        document.querySelector("input[name='captcha']").value = '';
+        document.getElementById('message').textContent = '';
+      }
+
+      function checkAnswers() {
+        const calc = document.querySelector("input[name='calc']").value.trim();
+        const captcha = document.querySelector("input[name='captcha']").value.trim();
+        const msg = document.getElementById('message');
+
+        if (parseInt(calc) === correctCalc && captcha === captchaCode) {
+          window.location.href = 'index.html';
+        } else {
+          tentatives--;
+          if (tentatives > 0) {
+            msg.textContent = `❌ Réponses incorrectes. Il vous reste ${tentatives} tentative(s).`;
+          } else {
+            msg.textContent = '🚫 Accès bloqué. Vous avez dépassé le nombre de tentatives autorisées.';
+            document.getElementById('questionForm').innerHTML = '';
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

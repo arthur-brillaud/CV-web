@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon CV - Minimal & Animé</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Outfit', 'sans-serif'],
+            },
+            animation: {
+              fadeIn: 'fadeIn 0.8s ease-in forwards',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: 0, transform: 'translateY(20px)' },
+                '100%': { opacity: 1, transform: 'translateY(0)' },
+              },
+            },
+          },
+        },
+        plugins: [],
+      }
+    </script>
+    <style>
+      .tilt {
+        transform-style: preserve-3d;
+        transition: transform 0.15s ease-out;
+      }
+      .glass {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transform-style: preserve-3d;
+        will-change: transform;
+        transition: transform 0.1s ease-out;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+      .glass:hover {
+        transform: perspective(1200px) rotateX(15deg) rotateY(-15deg) scale(1.04);
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+</style>
+  </head>
+  <body class="text-white font-sans relative">
+    <!-- Navbar -->
+    <nav class="absolute top-0 left-0 w-full bg-black/40 backdrop-blur-sm px-6 py-3 flex justify-between items-center z-50">
+      <h1 class="text-xl font-bold">Mon CV</h1>
+      <div class="flex space-x-4">
+        <a href="./pages/Calculatrice.html" class="text-white hover:underline">🧮 Calculatrice</a>
+      </div>
+    </nav>
+    <!-- Vidéo de fond -->
+    <video autoplay loop muted playsinline class="fixed top-0 left-0 w-full h-full object-cover z-[-1]">
+      <source src="./assets/Background.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la vidéo.
+    </video>
+
+    <audio id="bg-audio" src="./assets/Lil Xan - TREE SAP.mp3" autoplay loop></audio>
+
+    <div class="min-h-screen flex items-center justify-center px-6 py-32">
+      <div class="flex flex-col space-y-6 w-full max-w-5xl">
+        <!-- Bio -->
+        <section class="glass tilt rounded-2xl p-6 w-full" data-aos="fade-right">
+          <div class="relative w-fit inline-block mb-4">
+            <h1 class="relative text-4xl font-bold z-10">
+              Arthur
+              <img src="https://r2.fakecrime.bio/assets/sparkles/white.gif" alt="Particles" class="absolute inset-0 h-full w-full object-cover opacity-50 pointer-events-none" />
+            </h1>
+          </div>
+
+          <p class="text-sm text-gray-300 space-y-2">
+            <ul class="list-disc list-inside space-y-1">
+              <li>🎓 Étudiant à l'EPITA (Bachelor Cybersécurité)</li>
+              <li>🔐 Passionné par la cybersécurité</li>
+              <li>💻 Créateur de projets tech personnels</li>
+            </ul>
+
+            <hr class="my-4 border-white">
+
+            <div class="flex items-center space-x-2 mt-2">
+              <span>📍</span>
+              <span>Paris, France</span>
+            </div>
+            <div class="flex items-center space-x-2 mt-2">
+              <span>📧</span>
+              <a href="mailto:arthur.brillaud@epita.fr" class="underline text-gray-200 hover:text-white">arthur.brillaud@epita.fr</a>
+            </div>
+
+            <p class="text-xs mt-4 text-gray-400">
+              Playing: <span class="underline">Lil Xan - TREE SAP</span>
+              <button id="mute-btn" onclick="toggleMute()" class="ml-2 text-white/50 hover:text-white">🔊 mute</button>
+            </p>
+
+            <script>
+              function toggleMute() {
+                const audio = document.getElementById('bg-audio');
+                const muteBtn = document.getElementById('mute-btn');
+                if (audio.paused) {
+                  audio.play();
+                  muteBtn.textContent = "🔊 mute";
+                } else {
+                  audio.pause();
+                  muteBtn.textContent = "🔇 unmute";
+                }
+              }
+            </script>
+
+            <div class="mt-4">
+              <a href="./assets/CV-Arthur.pdf" download class="inline-block bg-white text-black font-semibold py-2 px-4 rounded-xl hover:bg-gray-200 transition">
+                📄 Télécharger mon CV
+              </a>
+            </div>
+          </p>
+
+          <div class="flex justify-start mt-4 space-x-4 text-2xl">
+            <a href="#"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="glass rounded-2xl p-6 w-full" data-aos="fade-left">
+          <h2 class="text-2xl font-semibold mb-4">Skills</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-bold mb-2">Languages</h3>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="flex items-center space-x-3">
+                  <img src="https://skillicons.dev/icons?i=html" class="h-6 rounded" alt="HTML Icon">
+                  <span>HTML</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <img src="https://skillicons.dev/icons?i=python" class="h-6 rounded" alt="Python Icon">
+                  <span>Python</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <img src="https://colorlib.com/wp/wp-content/uploads/sites/2/node.js-logo.png" class="h-6 w-6 rounded" alt="Node.js Icon">
+                  <span>Node.js</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <img src="https://skillicons.dev/icons?i=cpp" class="h-6 rounded" alt="C Icon">
+                  <span>C</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-bold mb-2">Frameworks & Tools</h3>
+              <div class="flex items-center space-x-3">
+                <img src="https://skillicons.dev/icons?i=tailwind" class="h-6 rounded" alt="Tailwind Icon">
+                <span>Tailwind CSS</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-bold mb-2">Others</h3>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="flex items-center space-x-3">
+                  <img src="https://skillicons.dev/icons?i=github" class="h-6 rounded" alt="GitHub Icon">
+                  <span>GitHub</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <img src="https://skillicons.dev/icons?i=linux" class="h-6 rounded" alt="Linux Icon">
+                  <span>Linux</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <img src="https://skillicons.dev/icons?i=mysql" class="h-6 rounded" alt="MySQL Icon">
+                  <span>MySQL</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <img src="https://skillicons.dev/icons?i=cloudflare" class="h-6 rounded" alt="Cloudflare Icon">
+                  <span>Cloudflare</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1400,
+        once: true
+      });
+    </script>
+  </body>
+</html>
