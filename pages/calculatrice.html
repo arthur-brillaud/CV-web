@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculatrice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .glass {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transform-style: preserve-3d;
+        will-change: transform;
+        transition: transform 0.1s ease-out;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+      .text {
+        color: #3B82F6;
+      }
+    </style>
+  </head>
+  <body class="text-white font-sans relative overflow-hidden flex items-center justify-center min-h-screen">
+    <video autoplay loop muted playsinline class="fixed top-0 left-0 w-full h-full object-cover z-[-1]">
+      <source src="../assets/Background.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la vidéo.
+    </video>
+    <div class="glass p-6 rounded-2xl backdrop-blur-md w-full max-w-xs shadow-xl text-center">
+      <a href="../index.html" class="inline-block mb-6 bg-white text-gray-600 font-semibold py-2 px-4 rounded-xl hover:bg-gray-500 transition">
+        🔙 Retour au CV
+      </a>
+
+      <div class="my-4"></div>
+
+      <h1 class="text-2xl font-bold mb-4 text-center">🧮 Calculatrice</h1>
+      <input type="text" id="result" class="w-full p-2 text-right text-xl bg-black/20 rounded mb-4" disabled />
+      <div class="grid grid-cols-4 gap-2">
+        <button class="btn" onclick="append('7')">7</button>
+        <button class="btn" onclick="append('8')">8</button>
+        <button class="btn" onclick="append('9')">9</button>
+        <button class="btn" onclick="append('/')">/</button>
+        <button class="btn" onclick="append('4')">4</button>
+        <button class="btn" onclick="append('5')">5</button>
+        <button class="btn" onclick="append('6')">6</button>
+        <button class="btn" onclick="append('*')">*</button>
+        <button class="btn" onclick="append('1')">1</button>
+        <button class="btn" onclick="append('2')">2</button>
+        <button class="btn" onclick="append('3')">3</button>
+        <button class="btn" onclick="append('-')">-</button>
+        <button class="btn" onclick="append('0')">0</button>
+        <button class="btn" onclick="append('.')">.</button>
+        <button class="btn" onclick="calculate()">=</button>
+        <button class="btn" onclick="append('+')">+</button>
+        <button class="col-span-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white px-4 py-2 rounded-xl transition" onclick="clearResult()">C</button>
+      </div>
+    </div>
+
+    <script>
+      window.onload = () => {
+        window.append = (val) => {
+          const input = document.getElementById('result');
+          if (input.value === 'Erreur') input.value = '';
+          input.value += val;
+        };
+    
+        window.clearResult = () => {
+          document.getElementById('result').value = '';
+        };
+    
+        window.calculate = () => {
+          try {
+            const result = eval(document.getElementById('result').value);
+            document.getElementById('result').value = result;
+          } catch {
+            document.getElementById('result').value = 'Erreur';
+          }
+        };
+      };
+    </script>    
+
+    <style>
+      .btn {
+        background: white;
+        color: black;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        font-size: 1.25rem;
+        transition: background 0.2s;
+      }
+      .btn:hover {
+        background: gray;
+      }
+    </style>
+  </body>
+</html>
