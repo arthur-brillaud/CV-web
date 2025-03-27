@@ -1,6 +1,6 @@
 # CV-web
 
-Ce projet inclut un **CV interactif** avec un système de **sécurisation d'accès** via un formulaire de vérification (calcul et code de sécurité). Il intègre également une **calculatrice** fonctionnelle pour permettre l'interaction de l'utilisateur avec l'interface.
+Ce projet inclut un **CV interactif** avec un système de **"sécurisation d'accès"** via un formulaire de vérification (calcul et code de sécurité). Il intègre également une **calculatrice** fonctionnelle pour permettre l'interaction de l'utilisateur avec l'interface.
 
 ## Fonctionnalités
 
@@ -11,11 +11,11 @@ Ce projet inclut un **CV interactif** avec un système de **sécurisation d'acc�
    
    ![Index](./assets/Index.png)
 
-### 2. **Accès Sécurisé**
+### 2. **Accès "Sécurisé"**
    - Un formulaire pour valider l'accès avec deux étapes :
      - Un calcul à résoudre (affiché de manière dynamique).
      - Un **code de sécurité** généré aléatoirement que l'utilisateur doit réécrire correctement.
-   - Si les réponses sont incorrectes, l'accès est bloqué après plusieurs tentatives.
+   - Si les réponses sont incorrectes, l'accès est bloqué après 5 tentatives.
 
    ![Questionnaire](./assets/Questionaire.png)
 
@@ -30,6 +30,7 @@ Ce projet inclut un **CV interactif** avec un système de **sécurisation d'acc�
 
 - **HTML5** pour la structure du site.
 - **CSS3 (avec TailwindCSS)** pour le style et la mise en page.
+- **JavaScript** pour les fonctionnalités interactives (calculatrice et vérification de l'accès).
 - **Vidéo de fond** pour améliorer l'apparence de la page et attirer l'attention.
   
 ## Installation
