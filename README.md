@@ -9,7 +9,7 @@ Ce projet inclut un **CV interactif** avec un système de **sécurisation d'acc�
    - Vidéo de fond (musique en option).
    - Un **bouton de téléchargement** du CV au format PDF.
    
-   ![Index](./)
+   ![Index](./assets/Index.png)
 
 ### 2. **Accès Sécurisé**
    - Un formulaire pour valider l'accès avec deux étapes :
@@ -17,14 +17,14 @@ Ce projet inclut un **CV interactif** avec un système de **sécurisation d'acc�
      - Un **code de sécurité** généré aléatoirement que l'utilisateur doit réécrire correctement.
    - Si les réponses sont incorrectes, l'accès est bloqué après plusieurs tentatives.
 
-   ![Questionnaire](./)
+   ![Questionnaire](./assets/Questionaire.png)
 
 ### 3. **Calculatrice**
    - Une calculatrice fonctionnelle intégrée à l'application.
    - Interface soignée avec une **palette de couleurs** cohérente, comprenant un **fond de couleur noire avec un effet vidéo** et des boutons de couleur bleue et blanche.
    - Boutons colorés pour des interactions faciles et intuitives.
 
-   ![Calculette](./)
+   ![Calculette](./assets/Calculatrice.png)
 
 ## Technologies Utilisées
 
